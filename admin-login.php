@@ -1,6 +1,3 @@
-<?php
-// Now we check if the data from the login form was submitted, isset() will check if the data exists.
-//if ( !isset($_POST['username'], $_POST['password']) ) {?>
 <html>
 <head>
 		<meta charset="utf-8">
