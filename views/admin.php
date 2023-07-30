@@ -3,8 +3,16 @@
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.php');
+	header('Location: ../admin-login.html');
 	exit;
+
+	if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 900) {
+		// last request was more than 15 minutes ago
+		session_unset(); // unset $_SESSION variable for the run-time
+		session_destroy(); // destroy session data in storage
+		header("Location: ../admin-.login.html"); // redirect to login page
+	  }
+	  $_SESSION['last_activity'] = time(); // update last activity time stamp
 }
 ?>
 
@@ -21,6 +29,7 @@ if (!isset($_SESSION['loggedin'])) {
 			<div>
 				<h1>Admin Page</h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="../views/register-page.php"><i class="fas fa-registered"></i>Register</a>
 				<a href="../router/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
