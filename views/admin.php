@@ -29,6 +29,7 @@ if (!isset($_SESSION['loggedin'])) {
 			<div>
 				<h1>Admin Page</h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="../views/upload-page.php"><i class="fas fa-upload"></i>Upload</a>
 				<a href="../views/register-page.php"><i class="fas fa-registered"></i>Register</a>
 				<a href="../router/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>

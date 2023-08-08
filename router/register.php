@@ -22,7 +22,7 @@ if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
 // Make sure the submitted registration values are not empty.
 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])) {
 	// One or more values are empty.
-	errorMessage("lease complete the registration form!");
+	errorMessage("Please complete the registration form!");
 	exit();
 }
 
