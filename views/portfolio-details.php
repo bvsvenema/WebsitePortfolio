@@ -1,3 +1,14 @@
+<?php
+include "../router/db.inc.php";
+  if(isset($_GET['project_id'])){
+    $project_id = $_GET['project_id'];
+    $get_project = $con2->query("SELECT * FROM projects WHERE id = $project_id");
+    $project_data = $get_project->fetch_assoc();
+  }else{
+    header("location: ../index.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +16,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio Details - iPortfolio Bootstrap Template</title>
+  <?php
+  echo '<title>Portfolio Details - '.$project_data["projectname"].'</title>'
+  ?>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,13 +40,6 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Updated: May 30 2023 with Bootstrap v5.3.0
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -43,7 +49,7 @@
 
   <!-- ======= Header ======= -->
   <header id="header">
-    <?php include '../assets/php/nav.html'; ?>
+  <?php include '../assets/php/nav.html'; ?>
   </header><!-- End Header -->
 
   <main id="main">
@@ -53,10 +59,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfoio Details</h2>
+          <h2>Portfolio Details</h2>
           <ol>
-            <li><a href="index.php">Home Big Balls</a></li>
-            <li>Portfoio Details</li>
+            <li><a href="../index.php">Home</a></li>
+            <?php echo'<li>Portfoio Details - '.$project_data["projectname"].'</li>'  ?>
           </ol>
         </div>
 
@@ -74,15 +80,15 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
+                  <?php echo '<img src="../uploads/'.$project_data["picturename"].'" alt=""> '?> 
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                  <img src="../assets/img/portfolio/portfolio-details-2.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
+                  <img src="../assets/img/portfolio/portfolio-details-3.jpg" alt="">
                 </div>
 
               </div>
@@ -93,12 +99,13 @@
           <div class="col-lg-4">
             <div class="portfolio-info">
               <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Web design</li>
+              <ul><?php echo'
+                <li><strong>Category</strong>: '.$project_data["catagory"].'</li>
                 <li><strong>Client</strong>: ASU Company</li>
                 <li><strong>Project date</strong>: 01 March, 2020</li>
                 <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-              </ul>
+                <li><strong>Project Download</strong>: <a href="../uploads/'.$project_data["filename"].'"><i class="bi bi-download"></i>'.$project_data["filename"].'</a></li>
+                '?></ul>
             </div>
             <div class="portfolio-description">
               <h2>This is an example of portfolio detail</h2>

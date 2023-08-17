@@ -5,6 +5,7 @@ $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'phplogin';
+$DATABASE_NAME2 = 'myprojects';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if (mysqli_connect_errno()) {
@@ -12,6 +13,14 @@ if (mysqli_connect_errno()) {
 	errorMessage("Sorry,Failed to connect to MySQL: " .mysqli_connect_error());
 	exit();
 }
+
+$con2 = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME2);
+if (mysqli_connect_errno()) {
+	// If there is an error with the connection, stop the script and display the error.
+	errorMessage("Sorry,Failed to connect to MySQL: " .mysqli_connect_error());
+	exit();
+}
+
 
 
 $target_dir = "../uploads/";
@@ -34,7 +43,7 @@ if(isset($_POST["submit"])) {
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    echo "Sorry, file name already exists.";
     $uploadOk = 0;
     exit;
 }
@@ -64,35 +73,34 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
   // if everything is ok, try to upload file
   } else {
-    if($stmt = $con->prepare('SELECT id * FROM myprojects WHERE projects = ?')){
+    if($stmt = $con2->prepare('SELECT id, filename FROM projects WHERE projectname = ?')){
     $stmt->bind_param('s', $_POST['projectname']);
     $stmt->execute();
     $stmt->store_result();
 
     if($stmt->num_rows > 0){
-      echo "Sorre, Project name already exist";
+      echo "Sorry, Project name already exist";
     }else{
-      if($stmt = $con->prepare('INSERT INTO projects (projectname, filename, picutername, catagory, headlanguage) VALUES (?,?,?,?,?)')){
+      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`) VALUES (?,?,?,?,?)")){
         $fileName = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
         $picturename = htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
         $stmt->bind_param('sssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage']);
         $stmt->execute();
         
       }else{
-        echo"Could not prepare statement!2133";
+        echo"Could not prepare statement!";
         exit;
       }
     }
     $stmt->close();
   } else {
     // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
-    echo"Could not prepare statement!aaaaaaaaaaa";
+    echo"Could not prepare statement!";
     exit;
   }
 
 
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_file2)) {
-
       echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " with the name ". $_POST['projectname'] ." has been uploaded. with the picuter " .htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
     } else {
       echo "Sorry, there was an error uploading your file.";
@@ -100,6 +108,7 @@ if ($uploadOk == 0) {
    
   }
   $con->close();
+  $con2->close();
 
 
   ?>
