@@ -18,4 +18,9 @@ if (mysqli_connect_errno()) {
 	errorMessage("Sorry,Failed to connect to MySQL: " .mysqli_connect_error());
 	exit();
 }
+
+function CloseConnection($con, $con2) {
+	$con->close();
+  	$con2->close();
+}
 ?>

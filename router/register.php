@@ -1,10 +1,7 @@
 <?php
 session_start();
 // Change this to your connection info.
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'phplogin';
+include "../router/db.inc.php";
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if (mysqli_connect_errno()) {
@@ -70,7 +67,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 	// Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
 	errorMessage("Could not prepare statement!");
 }
-$con->close();
+CloseConnection($con, $con2);
 
 function errorMessage($errorMsg){
 	$_SESSION['login_error_msg'] = "$errorMsg";

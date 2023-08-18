@@ -1,31 +1,12 @@
 <?php
 session_start();
 // Change this to your connection info.
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'phplogin';
-$DATABASE_NAME2 = 'myprojects';
-// Try and connect using the info above.
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-	// If there is an error with the connection, stop the script and display the error.
-	errorMessage("Sorry,Failed to connect to MySQL: " .mysqli_connect_error());
-	exit();
-}
-
-$con2 = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME2);
-if (mysqli_connect_errno()) {
-	// If there is an error with the connection, stop the script and display the error.
-	errorMessage("Sorry,Failed to connect to MySQL: " .mysqli_connect_error());
-	exit();
-}
-
+include "../router/db.inc.php";
 
 
 $target_dir = "../uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$target_file2 = $target_dir . basename($_FILES["projectimage"]["name"]);
+$target_file2 = basename($_FILES["projectimage"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
@@ -49,7 +30,7 @@ if (file_exists($target_file)) {
 }
 
   // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000000) {
+if ($_FILES["fileToUpload"]["size"] > 50000000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
     exit;
@@ -73,6 +54,7 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
   // if everything is ok, try to upload file
   } else {
+    $uniqId = uniqid();
     if($stmt = $con2->prepare('SELECT id, filename FROM projects WHERE projectname = ?')){
     $stmt->bind_param('s', $_POST['projectname']);
     $stmt->execute();
@@ -81,10 +63,10 @@ if ($uploadOk == 0) {
     if($stmt->num_rows > 0){
       echo "Sorry, Project name already exist";
     }else{
-      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`) VALUES (?,?,?,?,?)")){
+      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `client`, `url`) VALUES (?,?,?,?,?,?,?)")){
         $fileName = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
-        $picturename = htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
-        $stmt->bind_param('sssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage']);
+        $picturename = $uniqId . $target_file2;
+        $stmt->bind_param('sssssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $_POST['url']);
         $stmt->execute();
         
       }else{
@@ -100,15 +82,14 @@ if ($uploadOk == 0) {
   }
 
 
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_file2)) {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2)) {
       echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " with the name ". $_POST['projectname'] ." has been uploaded. with the picuter " .htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
    
   }
-  $con->close();
-  $con2->close();
+  CloseConnection($con, $con2);
 
 
   ?>

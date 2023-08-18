@@ -1,6 +1,8 @@
 <?php
+session_start();
 include "../router/db.inc.php";
   if(isset($_GET['project_id'])){
+
     $project_id = $_GET['project_id'];
     $get_project = $con2->query("SELECT * FROM projects WHERE id = $project_id");
     $project_data = $get_project->fetch_assoc();
@@ -59,10 +61,10 @@ include "../router/db.inc.php";
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
+          <?php echo'<h2>Portfolio Details - '.$project_data["projectname"].'</h2>' ?>
           <ol>
-            <li><a href="../index.php">Home</a></li>
-            <?php echo'<li>Portfoio Details - '.$project_data["projectname"].'</li>'  ?>
+            <li><a href="../index.php#portfolio">Home</a></li>
+            <?php echo'<li>Portfolio Details - '.$project_data["projectname"].'</li>'  ?>
           </ol>
         </div>
 
@@ -99,19 +101,19 @@ include "../router/db.inc.php";
           <div class="col-lg-4">
             <div class="portfolio-info">
               <h3>Project information</h3>
-              <ul><?php echo'
-                <li><strong>Category</strong>: '.$project_data["catagory"].'</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                <li><strong>Project Download</strong>: <a href="../uploads/'.$project_data["filename"].'"><i class="bi bi-download"></i>'.$project_data["filename"].'</a></li>
-                '?></ul>
+              <ul><?php 
+                echo'<li><strong>Category</strong>: '.$project_data["catagory"].'</li>';
+                echo'<li><strong>Head language</strong>: '.$project_data["headlanguage"].'</li>';
+                if($project_data["client"] != null) echo'<li><strong>Client</strong>: '.$project_data["client"].'</li>';
+                echo'<li><strong>Project date</strong>: '.$project_data["date"].'</li>';
+                if($project_data["url"] != null) echo'<li><strong>Project URL</strong>: <a href="#">'.$project_data["url"].'</a></li>';
+                echo' <li><strong>Project Download</strong>: <a href="../uploads/'.$project_data["filename"].'"><i class="bi bi-download"> </i>'.$project_data["filename"].'</a></li>
+                ';
+                CloseConnection($con, $con2);
+                ?></ul>
             </div>
             <div class="portfolio-description">
-              <h2>This is an example of portfolio detail</h2>
-              <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-              </p>
+              <h2>Project informatie</h2>
             </div>
           </div>
 
@@ -126,7 +128,7 @@ include "../router/db.inc.php";
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>iPortfolio</span></strong>
+        &copy; Copyright <strong><span>Benjamin Venema</span></strong>
       </div>
       
     </div>

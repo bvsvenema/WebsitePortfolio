@@ -301,9 +301,9 @@ $stmt->close();*/
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".website">Website</li>
-              <li data-filter=".game">Game</li>
-              <li data-filter=".program">Program</li>
+              <li data-filter=".Website">Website</li>
+              <li data-filter=".Game">Game</li>
+              <li data-filter=".Program">Program</li>
             </ul>
           </div>
         </div>

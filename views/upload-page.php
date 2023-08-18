@@ -31,18 +31,30 @@ if (!isset($_SESSION['loggedin'])) {
 			<form action="../router/upload.php" method="post" enctype="multipart/form-data" autocomplete="off">
 			<br>
 				<label for="projectname">
-					<i class="fas fa-user"></i>
+					<i class="fas fa-project-diagram"></i>
 				</label>
 				<input type="text" name="projectname" placeholder="Project Name" id="projectname" required>
+				<br>
+
+				<label for="client">
+					<i class="fas fa-user"></i>
+				</label>
+				&nbsp;<input type="text" name="client" placeholder="Client Name" id="client">
+				<br>
+
+				<label for="url">
+					<i class="fas fa-link"></i>
+				</label>
+				<input type="text" name="url" placeholder="Url" id="url">
 				<br>
 
                 <label for="category">
                     <i class="fas fa-list-alt"></i>
                 </label>
                 <select name="category" id="category" required>
-                    <option value="website">Website</option>
-                    <option value="game">Game</option>
-                    <option value="program">Program</option>
+                    <option value="Website">Website</option>
+                    <option value="Game">Game</option>
+                    <option value="Program">Program</option>
                 </select>
                 <br>
 

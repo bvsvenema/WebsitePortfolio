@@ -28,10 +28,11 @@ if (!isset($_SESSION['loggedin'])) {
 		<nav class="navtop">
 			<div>
 				<h1>Admin Page</h1>
+				<a href="admin-project.php"><i class="fas fa-project-diagram"></i>projects</a>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="../views/upload-page.php"><i class="fas fa-upload"></i>Upload</a>
-				<a href="../views/register-page.php"><i class="fas fa-registered"></i>Register</a>
-				<a href="../router/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="upload-page.php"><i class="fas fa-upload"></i>Upload</a>
+				<a href="register-page.php"><i class="fas fa-registered"></i>Register</a>
+				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">
