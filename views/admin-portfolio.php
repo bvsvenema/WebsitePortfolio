@@ -81,15 +81,16 @@ session_start();
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <?php echo '<img src="../uploads/'.$project_data["picturename"].'" alt=""> '?> 
+                  <?php echo '<img src="../uploads/'.$project_data["projectname"].'-Project/'.$project_data["picturename"].'" alt=""> '?> 
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                <?php echo '<img src="../uploads/'.$project_data["picturename"].'" alt=""> '?> 
+                
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio/portfolio-details-3.jpg" alt="">
+                <?php echo '<img src="../uploads/'.$project_data["picturename"].'" alt=""> '?> 
                 </div>
 
               </div>
@@ -146,16 +147,40 @@ session_start();
                     <input type="submit" class="btn-success btn btn-sm" value="Save">
                     <input type="reset" class="btn-warning btn btn-sm" value="Cancel">
                   </li>
-                </form>';
+                </form></ul>
+                <form>
+                  <h3>add extra picture</h3>
+                  <ul>
+                    <li>
+                      <strong>Picture File</strong>: 
+                      <input type="file" name="projectimage" id="projectimage"></br>
+                    </li>
+                    <li>
+                      <input type="submit" class="btn-success btn btn-sm" value="Upload">
+                    </li>
+                  </ul>
+                </form>
+                ';
                 CloseConnection($con, $con2);
-                ?></ul>
+                ?>
             </div>
+        </div>
+
             <div class="portfolio-description">
               <h2>Project informatie</h2>
+
+                <form action="../router/editInformation.php" method="post">
+                  <input type="text" name="id" value="<?=$project_data["id"]?>" style="display: none">
+                  <h3>Add information</h3>
+                  <textarea  name="information" id="information" cols="80" rows="10"><?=$project_data["information"]?></textarea> <br>
+                  <input type="submit" class="btn-success btn btn-sm" value="Save">
+                  <input type="reset" class="btn-warning btn btn-sm" value="Cancel">
+                </form>
+
+              
             </div>
           </div>
 
-        </div>
 
       </div>
     </section><!-- End Portfolio Details Section -->

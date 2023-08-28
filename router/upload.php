@@ -3,8 +3,7 @@ session_start();
 // Change this to your connection info.
 include "../router/db.inc.php";
 
-
-$target_dir = "../uploads/";
+$target_dir = "../uploads/".$_POST['projectname']."-Project/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $target_file2 = basename($_FILES["projectimage"]["name"]);
 $uploadOk = 1;
@@ -23,8 +22,8 @@ if(isset($_POST["submit"])) {
 }
 
 // Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file name already exists.";
+if (file_exists($target_dir)) {
+    echo "Sorry, folder name already exists.";
     $uploadOk = 0;
     exit;
 }
@@ -80,12 +79,15 @@ if ($uploadOk == 0) {
     echo"Could not prepare statement!";
     exit;
   }
-
-
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2)) {
-      echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " with the name ". $_POST['projectname'] ." has been uploaded. with the picuter " .htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
-    } else {
-      echo "Sorry, there was an error uploading your file.";
+    if(mkdir("../uploads/".$_POST['projectname'].'-Project')){
+      echo'made a folder';
+      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " with the name ". $_POST['projectname'] ." has been uploaded. with the picuter " .htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
+      } else {
+        echo "Sorry, there was an error uploading your file.";
+      }
+    }else{
+      echo "Sorry, Couldnt make file folder";
     }
    
   }

@@ -7,8 +7,8 @@ session_start();
     $sql = "DELETE FROM projects WHERE id=$project_id";
     $get_project = $con2->query("SELECT * FROM projects WHERE id = $project_id");
     $project_data = $get_project->fetch_assoc();
-    $deletefile = unlink("../uploads/".$project_data['filename']);
-    $deletepicture = unlink("../uploads/".$project_data['picturename']);
+    $deletefile = unlink("../uploads/".$project_data['projectname']."-Project/".$project_data['filename']);
+    $deletepicture = unlink("../uploads/".$project_data['projectname']."-Project/".$project_data['picturename']);
     if($con2->query($sql) === true){
 
         if($deletefile)
@@ -19,6 +19,7 @@ session_start();
         }
         if($deletepicture){
             echo 'Deleted file '.$project_data['picturename'].", ";
+            rmdir("../uploads/".$project_data['projectname']."-Project");
         }else{
             echo "something went wrong with deleting the picutre";
         }

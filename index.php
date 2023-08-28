@@ -317,9 +317,9 @@ $stmt->close();*/
             echo '
             <div class="col-lg-4 col-md-6 portfolio-item '.$row["catagory"].'">
             <div class="portfolio-wrap">
-              <img src="uploads/'.$row["picturename"].'" style="width: 100%; max-height: 300px; margin-bottom: 1rem;" alt="">
+              <img src="uploads/'.$row["projectname"].'-Project/'.$row["picturename"].'" style="width: 100%; max-height: 300px; margin-bottom: 1rem;" alt="">
               <div class="portfolio-links">
-                <a href="uploads/'.$row["picturename"].'" data-gallery="portfolioGallery" class="portfolio-lightbox" title="'.$row["projectname"].'"><i class="bx bx-plus"></i></a>
+                <a href="uploads/'.$row["projectname"].'-Project/'.$row["picturename"].'" data-gallery="portfolioGallery" class="portfolio-lightbox" title="'.$row["projectname"].'"><i class="bx bx-plus"></i></a>
                 <a href="views/portfolio-details.php?project_id='.$row["id"].'" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>

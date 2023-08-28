@@ -32,7 +32,7 @@ if (!isset($_SESSION['loggedin'])) {
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="upload-page.php"><i class="fas fa-upload"></i>Upload</a>
 				<a href="register-page.php"><i class="fas fa-registered"></i>Register</a>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="../router/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">

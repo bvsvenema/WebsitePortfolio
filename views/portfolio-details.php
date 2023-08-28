@@ -82,7 +82,7 @@ include "../router/db.inc.php";
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <?php echo '<img src="../uploads/'.$project_data["picturename"].'" alt=""> '?> 
+                  <?php echo '<img src="../uploads/'.$project_data["projectname"].'-Project/'.$project_data["picturename"].'" alt=""> '?> 
                 </div>
 
                 <div class="swiper-slide">
@@ -107,13 +107,14 @@ include "../router/db.inc.php";
                 if($project_data["client"] != null) echo'<li><strong>Client</strong>: '.$project_data["client"].'</li>';
                 echo'<li><strong>Project date</strong>: '.$project_data["date"].'</li>';
                 if($project_data["url"] != null) echo'<li><strong>Project URL</strong>: <a href="#">'.$project_data["url"].'</a></li>';
-                echo' <li><strong>Project Download</strong>: <a href="../uploads/'.$project_data["filename"].'"><i class="bi bi-download"> </i>'.$project_data["filename"].'</a></li>
+                echo' <li><strong>Project Download</strong>: <a href="../uploads/'.$project_data["projectname"].'-Project/'.$project_data["filename"].'"><i class="bi bi-download"> </i>'.$project_data["filename"].'</a></li>
                 ';
                 CloseConnection($con, $con2);
                 ?></ul>
             </div>
             <div class="portfolio-description">
               <h2>Project informatie</h2>
+              <p><?=$project_data['information']?></p>
             </div>
           </div>
 
