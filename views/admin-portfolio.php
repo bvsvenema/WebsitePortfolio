@@ -102,36 +102,40 @@ include "../router/inactivityLogout.php";
           <div class="col-lg-4">
             <div class="portfolio-info">
               <h3>Project information</h3>
-              <ul><?php 
-                echo'
+              <ul>
                 <form action="../router/editproject.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                  <input type="text" name="id" value="'.$project_data["id"].'" style="display: none">
+                  <input type="text" name="id" value="<?=$project_data["id"]?>" style="display: none">
                   <li class="w-100">
                     <strong>Project Name</strong>:
-                    <input type="text" name="projectname" placeholder="Project Name" value="'.$project_data["projectname"].'" id="projectname" required>
+                    <input type="text" name="projectname" placeholder="Project Name" value="<?=$project_data["projectname"]?>" id="projectname" required>
                   </li>
 
                   <li class="w-100"><strong>Category</strong>:
                     <select selected="Game" name="category" id="category" required>
-                      <option ';if($project_data["catagory"] == "Website"){ echo'selected';} echo' value="Website">Website</option>
-                      <option ';if($project_data["catagory"] == "Game"){ echo'selected';} echo' value="Game">Game</option>
-                      <option ';if($project_data["catagory"] == "Program"){ echo'selected';} echo' value="Program">Program</option>
+                      <option <?php if($project_data["catagory"] == "Website"){ echo'selected';} ?> value="Website">Website</option>
+                      <option <?php if($project_data["catagory"] == "Game"){ echo'selected';}?> value="Game">Game</option>
+                      <option <?php if($project_data["catagory"] == "Program"){ echo'selected';}?> value="Program">Program</option>
                     </select>
                   </li>
 
                   <li class="w-100">
                     <strong>Client</strong>: 
-                    <input type="text" name="client" placeholder="Client Name" id="client" value="'.$project_data["client"].'">
+                    <input type="text" name="client" placeholder="Client Name" id="client" value="<?=$project_data["client"]?>">
                   </li>
 
                   <li>
-                    <strong>Project date</strong>: 
-                    <input type="date" name="date" if="date" value="'.$project_data["date"].'" required>
+                    <strong>Project start date</strong>: 
+                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"]?>" required>
+                  </li>
+
+                  <li>
+                    <strong>Project finish date</strong>: 
+                    <input type="date" name="finishdate" if="finishdate" value="<?= $project_data["finishdate"]?>" required>
                   </li>
 
                   <li>
                     <strong>Project URL</strong>: 
-                    <input type="text" name="url" placeholder="Url" id="url" value="'.$project_data["url"].'">
+                    <input type="text" name="url" placeholder="Url" id="url" value="<?=$project_data["url"]?>">
                   </li>
 
                   
@@ -161,9 +165,8 @@ include "../router/inactivityLogout.php";
                     </li>
                   </ul>
                 </form>
-                ';
-                CloseConnection($con, $con2);
-                ?>
+                
+                <?php CloseConnection($con, $con2); ?>        
             </div>
         </div>
 

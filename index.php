@@ -331,21 +331,20 @@ $stmt->close();*/
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
         <?php
-        $sql = "SELECT id, projectname, filename, picturename, catagory, headlanguage, date FROM projects";
+        $sql = "SELECT id, projectname, picturename, catagory FROM projects";
         $result = $con2->query($sql);
         if($result->num_rows > 0){
-          while($row = $result->fetch_assoc()){
-            echo '
-            <div class="col-lg-4 col-md-6 portfolio-item '.$row["catagory"].'">
+          while($row = $result->fetch_assoc()){?>            
+            <div class="col-lg-4 col-md-6 portfolio-item <?=$row["catagory"]?>">
             <div class="portfolio-wrap">
-              <img src="uploads/'.$row["projectname"].'-Project/'.$row["picturename"].'" style="width: 100%; max-height: 300px; margin-bottom: 1rem;" alt="">
+              <img src="uploads/<?=$row["projectname"].'-Project/'.$row["picturename"]?>" style="width: 100%; max-height: 300px; margin-bottom: 1rem;" alt="">
               <div class="portfolio-links">
-                <a href="uploads/'.$row["projectname"].'-Project/'.$row["picturename"].'" data-gallery="portfolioGallery" class="portfolio-lightbox" title="'.$row["projectname"].'"><i class="bx bx-plus"></i></a>
-                <a href="views/portfolio-details.php?project_id='.$row["id"].'" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="uploads/<?=$row["projectname"].'-Project/'.$row["picturename"]?>" data-gallery="portfolioGallery" class="portfolio-lightbox" title="<?=$row["projectname"]?>"><i class="bx bx-plus"></i></a>
+                <a href="views/portfolio-details.php?project_id=<?=$row["id"]?>" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
-          </div>
-            ';
+          </div>         
+        <?php
           }
         }else{
           echo "0 results";

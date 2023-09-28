@@ -72,6 +72,18 @@ if (!isset($_SESSION['loggedin'])) {
                 </select>
                 <br>
 
+				<label for="startdate">
+					<i class="fas fa-calendar-alt"></i>
+				</label>
+				<input type="date" name="startdate" id="startdate">
+				<br>
+
+				<label for="finishdate">
+					<i class="fas fa-calendar-check"></i>
+				</label>
+				<input type="date" name="finishdate" id="finishdate">
+				<br>
+
                 <label for="Project Image">
                     <i class="fa-solid fa-image"></i>
                 </label>
@@ -84,6 +96,11 @@ if (!isset($_SESSION['loggedin'])) {
 				</label>
 				<input type="file" name="fileToUpload" id="fileToUpload" required>
 				<br>
+
+				<label for="inforamtion">
+					<i></i>
+				</label>
+				<textarea name="inforamtion" id="inforamtion" cols="80" rows="5"></textarea>
 
 
                 <!-- error message -->

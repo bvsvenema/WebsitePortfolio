@@ -70,14 +70,14 @@ if ($uploadOk == 0) {
     }else{
       if($con2->query($sql) === true){
       }else{
-        errorMessage("Could create table", false);
+        errorMessage("Couldn't create table", false);
         exit;
       }
 
-      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `client`, `url`) VALUES (?,?,?,?,?,?,?)")){
+      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `startdate`, `finishdate`, `client`, `url`, `information`) VALUES (?,?,?,?,?,?,?,?,?,?)")){
         $fileName = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
-        $picturename = $uniqId . $target_file2;
-        $stmt->bind_param('sssssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $_POST['url']);
+        $picturename = $uniqId . $target_file2;      
+        $stmt->bind_param('ssssssssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['startdate'], $_POST['finishdate'], $_POST['client'], $_POST['url'], $_POST['information']);
         $stmt->execute();
         
       }else{
@@ -105,6 +105,7 @@ if ($uploadOk == 0) {
     
    
   }
+
   function errorMessage($Msg, bool $error_or_succes){
     if($error_or_succes == false){
       $_SESSION['upload_error_msg'] = "$Msg";

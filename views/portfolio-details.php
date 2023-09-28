@@ -101,16 +101,21 @@ include "../router/db.inc.php";
           <div class="col-lg-4">
             <div class="portfolio-info">
               <h3>Project information</h3>
-              <ul><?php 
-                echo'<li><strong>Category</strong>: '.$project_data["catagory"].'</li>';
-                echo'<li><strong>Head language</strong>: '.$project_data["headlanguage"].'</li>';
-                if($project_data["client"] != null) echo'<li><strong>Client</strong>: '.$project_data["client"].'</li>';
-                echo'<li><strong>Project date</strong>: '.$project_data["date"].'</li>';
-                if($project_data["url"] != null) echo'<li><strong>Project URL</strong>: <a href="#">'.$project_data["url"].'</a></li>';
-                echo' <li><strong>Project Download</strong>: <a href="../uploads/'.$project_data["projectname"].'-Project/'.$project_data["filename"].'"><i class="bi bi-download"> </i>'.$project_data["filename"].'</a></li>
-                ';
-                CloseConnection($con, $con2);
-                ?></ul>
+
+              <ul>
+                <li><strong>Category</strong>: <?=$project_data["catagory"]?></li>
+                <li><strong>Head language</strong>: <?=$project_data["headlanguage"]?></li>
+                <?php if($project_data["client"] != null){?>
+                  <li><strong>Client</strong>: <?=$project_data["client"]?></li>
+                <?php } if($project_data["startdate"] != "0000-00-00" && $project_data["startdate"] != null){?>
+                  <li><strong>Project start date</strong>: <?=$project_data["startdate"]?></li>
+                <?php } if($project_data["finishdate"] != "0000-00-00" && $project_data["finishdate"] != null){?>
+                <li><strong>Project finish date</strong>: <?=$project_data["finishdate"]?></li>
+                <?php } if($project_data["url"] != null){ ?>
+                  <li><strong>Project URL</strong>: <a href="#"><?=$project_data["url"]?></a></li><?php } ?>
+                <li><strong>Project Download</strong>: <a href="../uploads/<?=$project_data["projectname"]?>-Project/<?=$project_data["filename"]?>"><i class="bi bi-download"> </i><?=$project_data["filename"]?></a></li>
+                <?php CloseConnection($con, $con2); ?>
+              </ul>
             </div>
             
           </div>

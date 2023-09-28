@@ -60,7 +60,7 @@ include "../router/db.inc.php";
             <p>Your projects are below:</p>
             <table style="width:100%">
                         <?php 
-                            $sql = "SELECT id, projectname, filename, picturename, catagory, headlanguage, date FROM projects";
+                            $sql = "SELECT id, projectname, filename, picturename, catagory, headlanguage FROM projects";
                             $result = $con2->query($sql);
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_assoc()){
