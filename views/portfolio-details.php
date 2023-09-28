@@ -51,7 +51,7 @@ include "../router/db.inc.php";
 
   <!-- ======= Header ======= -->
   <header id="header">
-  <?php include '../assets/php/nav.html'; ?>
+    <?php include '../assets/php/nav.html'; ?>
   </header><!-- End Header -->
 
   <main id="main">
@@ -112,13 +112,14 @@ include "../router/db.inc.php";
                 CloseConnection($con, $con2);
                 ?></ul>
             </div>
-            <div class="portfolio-description">
-              <h2>Project informatie</h2>
-              <p><?=$project_data['information']?></p>
-            </div>
+            
           </div>
 
         </div>
+        <div class="row gy-4">
+              <h2>Project informatie</h2>
+              <?=$project_data['information']?>
+            </div>
 
       </div>
     </section><!-- End Portfolio Details Section -->

@@ -1,6 +1,5 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
-session_start();
+include "../router/inactivityLogout.php";
 
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
@@ -13,6 +12,7 @@ include "../router/db.inc.php";
 <!DOCTYPE html>
 <html>
 	<head>
+    <meta http-equiv="refresh" content="9001">
 		<meta charset="utf-8">
 		<title>Profile Page</title>
 		<link href="../assets/css/styleAdmin.css" rel="stylesheet" type="text/css">
@@ -38,6 +38,24 @@ include "../router/db.inc.php";
 		</nav>
 		<div class="content">
 			<h2>Profile Page</h2>
+            <?php
+					if(!empty($_SESSION['delete_error_msg']))
+					{
+						echo"
+						<div class='alert alert-danger' role='alert'> 
+							".$_SESSION['delete_error_msg'],"
+						</div>";
+						unset($_SESSION['delete_error_msg']);
+					}
+					if(!empty($_SESSION['delete_succes_msg']))
+					{
+						echo"
+						<div class='alert alert-success' role='alert'> 
+							".$_SESSION['delete_succes_msg'],"
+						</div>";
+						unset($_SESSION['delete_succes_msg']);
+					}
+				?>
 			<div>
             <p>Your projects are below:</p>
             <table style="width:100%">
@@ -64,9 +82,22 @@ include "../router/db.inc.php";
                             }
                             echo "0 results";
                         ?>
+                        <tr>
+                            <td>
+                                <?php
+                                echo'Test';
+                                ?>
+                            </td>
+                        </tr>
             </table>
+
+
+				<br>
 			</div>
 		</div>
+
+                                    <!-- error message -->
+			
 	</body>
 </html>
 

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<?php session_start();
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: ../admin-login.html');
-	exit;
-}
+<?php
+include "../router/inactivityLogout.php";
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta http-equiv="refresh" content="9001">
 		<meta charset="utf-8">
 		<title>Profile Page</title>
 		<link href="../assets/css/styleAdmin.css" rel="stylesheet" type="text/css">

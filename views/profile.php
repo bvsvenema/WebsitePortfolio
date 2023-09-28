@@ -1,13 +1,7 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
-session_start();
 
 // If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: ../admin-login.html');
-	exit;
-}
-
+include "../router/inactivityLogout.php";
 include "../router/db.inc.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
@@ -25,6 +19,7 @@ $stmt->close();
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta http-equiv="refresh" content="9001">
 		<meta charset="utf-8">
 		<title>Profile Page</title>
 		<link href="../assets/css/styleAdmin.css" rel="stylesheet" type="text/css">

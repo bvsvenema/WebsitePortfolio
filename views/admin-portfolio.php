@@ -1,6 +1,6 @@
 <?php
 include "../router/db.inc.php";
-session_start();
+include "../router/inactivityLogout.php";
   if(isset($_GET['project_id'])){
 
     $project_id = $_GET['project_id'];
@@ -15,6 +15,7 @@ session_start();
 <html lang="en">
 
 <head>
+  <meta http-equiv="refresh" content="9001">
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 

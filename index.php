@@ -41,7 +41,28 @@ $stmt->close();*/
 
   <!-- ======= Header ======= -->
   <header id="header">
-    <?php include 'assets/php/nav.html'; ?>
+  <div class="d-flex flex-column">
+
+<div class="profile">
+  <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+  <h1 class="text-light"><a href="index.php">Benjamin Venema</a></h1>
+  <div class="social-links mt-3 text-center">
+    <a href="https://github.com/bvsvenema" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+    <a href="https://www.instagram.com/benjamin_venema/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/benjamin-venema-2894b927a/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+  </div>
+</div>
+
+<nav id="navbar" class="nav-menu navbar">
+  <ul>
+    <li><a href="index.php#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+    <li><a href="index.php#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Over mij</span></a></li>
+    <li><a href="index.php#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Curriculum Vitae</span></a></li>
+    <li><a href="index.php#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+    <li><a href="index.php#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+  </ul>
+</nav><!-- .nav-menu -->
+</div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->

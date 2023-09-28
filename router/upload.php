@@ -9,48 +9,54 @@ $target_file2 = basename($_FILES["projectimage"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
+$sql = "CREATE TABLE `_{$_POST['projectname']}-ProjectPictures` (
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  projectID INT(11) NOT NULL,
+  projectName VARCHAR(50) NOT NULL,
+  picturePath VARCHAR(255) NOT NULL
+)";
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
   $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
   if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
+    errorMessage("File is an image - " . $check["mime"] . ".", false);
     $uploadOk = 1;
   } else {
-    echo "File is not an image.";
+    errorMessage("File is not an image.", false);
     $uploadOk = 0;
   }
 }
 
 // Check if file already exists
 if (file_exists($target_dir)) {
-    echo "Sorry, folder name already exists.";
+    errorMessage("Sorry, folder name already exists.", false);
     $uploadOk = 0;
     exit;
 }
 
   // Check file size
 if ($_FILES["fileToUpload"]["size"] > 50000000000) {
-    echo "Sorry, your file is too large.";
+  errorMessage("Sorry, your file is too large.", false);
     $uploadOk = 0;
     exit;
 }
 
   // Allow certain file formats
 if($imageFileType != "zip" && $imageFileType != "rar") {
-  echo "Sorry, only zip or rar,";
+  errorMessage("Sorry, only zip or rar,", false);
   $uploadOk = 0;
   exit;
 }
 
 if($imageFileType2 != "jpg" && $imageFileType2 != "png" && $imageFileType2 != "jpeg"){
-    echo "sorry, only jpg, png or jpeg";
+  errorMessage("sorry, only jpg, png or jpeg", false);
     $uploadOk = 0;
     exit;
 } 
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+  errorMessage("Sorry, your file was not uploaded.", false);
   // if everything is ok, try to upload file
   } else {
     $uniqId = uniqid();
@@ -60,8 +66,14 @@ if ($uploadOk == 0) {
     $stmt->store_result();
 
     if($stmt->num_rows > 0){
-      echo "Sorry, Project name already exist";
+      errorMessage("Sorry, Project name already exist", false);
     }else{
+      if($con2->query($sql) === true){
+      }else{
+        errorMessage("Could create table", false);
+        exit;
+      }
+
       if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `client`, `url`) VALUES (?,?,?,?,?,?,?)")){
         $fileName = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
         $picturename = $uniqId . $target_file2;
@@ -69,29 +81,38 @@ if ($uploadOk == 0) {
         $stmt->execute();
         
       }else{
-        echo"Could not prepare statement!";
+        errorMessage("Could not prepare statement!", false);
         exit;
       }
     }
     $stmt->close();
   } else {
     // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
-    echo"Could not prepare statement!";
+    errorMessage("Could not prepare statement!", false);
     exit;
   }
     if(mkdir("../uploads/".$_POST['projectname'].'-Project')){
-      echo'made a folder';
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " with the name ". $_POST['projectname'] ." has been uploaded. with the picuter " .htmlspecialchars( basename( $_FILES["projectimage"]["name"]));
+        errorMessage('<strong>'.$_POST['projectname']."</strong> has been uploaded with the file: <strong>" .htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]))."'</strong>' and with the picture: <strong>".htmlspecialchars( basename( $_FILES["projectimage"]["name"])).'</strong>',true);
+        
       } else {
-        echo "Sorry, there was an error uploading your file.";
+        errorMessage("Sorry, there was an error uploading your file.", false);
       }
     }else{
-      echo "Sorry, Couldnt make file folder";
+      errorMessage("Sorry, Couldnt make file folder", false);
     }
+
+    
    
   }
+  function errorMessage($Msg, bool $error_or_succes){
+    if($error_or_succes == false){
+      $_SESSION['upload_error_msg'] = "$Msg";
+      header("Location: ../views/upload-page.php");
+      exit;
+    }
+    $_SESSION['upload_succes_msg'] = "$Msg";
+    header("Location: ../views/upload-page.php");
+  }
   CloseConnection($con, $con2);
-
-
   ?>

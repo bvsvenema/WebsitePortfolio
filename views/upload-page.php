@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php session_start();
+<?php
+include "../router/inactivityLogout.php";
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../admin-login.html');
 	exit;
@@ -9,6 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta http-equiv="refresh" content="9001">
 		<meta charset="utf-8">
 		<title>Profile Page</title>
 		<link href="../assets/css/styleAdmin.css" rel="stylesheet" type="text/css">
@@ -86,15 +88,21 @@ if (!isset($_SESSION['loggedin'])) {
 
                 <!-- error message -->
 				<?php
-					if(!empty($_SESSION['login_error_msg']))
+					if(!empty($_SESSION['upload_error_msg']))
 					{
-						echo"<h2>".$_SESSION['login_error_msg'],"</h2>";
-						unset($_SESSION['login_error_msg']);
+						echo"
+						<div class='alert alert-danger' role='alert'> 
+							".$_SESSION['upload_error_msg'],"
+						</div>";
+						unset($_SESSION['upload_error_msg']);
 					}
-					if(!empty($_SESSION['login_succes_msg']))
+					if(!empty($_SESSION['upload_succes_msg']))
 					{
-						echo"<h3>".$_SESSION['login_succes_msg'],"</h3>";
-						unset($_SESSION['login_succes_msg']);
+						echo"
+						<div class='alert alert-success' role='alert'> 
+							".$_SESSION['upload_succes_msg'],"
+						</div>";
+						unset($_SESSION['upload_succes_msg']);
 					}
 				?>
 				<br>
