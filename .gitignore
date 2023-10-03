@@ -1,3 +1,4 @@
 # Using wildcards
 *.zip
 *.rar
+*.env
