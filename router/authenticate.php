@@ -2,7 +2,6 @@
 session_start();
 include "../router/db.inc.php";
 // Change this to your connection info.
-ConnectDB("phplogin");
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['username'], $_POST['password']) ) {

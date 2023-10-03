@@ -1,11 +1,5 @@
 <?php
 include "router/db.inc.php";
-ConnectDB('myprojects')
-
-/*$stmt = $con2->prepare('SELECT projectname, filename, picturename, catagory, headlanguage FROM projects WHERE id = ? ORDER BY date DESC');
-$stmt->bind_result($projectname, $filename, $picturename, $catagory, $headlanguage);
-$stmt->fetch();
-$stmt->close();*/
 ?>
 
 <!DOCTYPE html>
@@ -333,7 +327,7 @@ $stmt->close();*/
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
         <?php
         $sql = "SELECT id, projectname, picturename, catagory FROM projects";
-        $result = $con->query($sql);
+        $result = $con2->query($sql);
         if($result->num_rows > 0){
           while($row = $result->fetch_assoc()){?>            
             <div class="col-lg-4 col-md-6 portfolio-item <?=$row["catagory"]?>">
