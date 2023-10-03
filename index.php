@@ -1,6 +1,6 @@
 <?php
 include "router/db.inc.php";
-
+ConnectDB('myprojects')
 
 /*$stmt = $con2->prepare('SELECT projectname, filename, picturename, catagory, headlanguage FROM projects WHERE id = ? ORDER BY date DESC');
 $stmt->bind_result($projectname, $filename, $picturename, $catagory, $headlanguage);
@@ -47,9 +47,6 @@ $stmt->close();*/
 <div class="profile">
   <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
   <h1 class="text-light"><a href="index.php">Benjamin Venema</a></h1>
-  <?php
-    echo '<H1>'.apache_getenv('TESTING'). "</h1>";
-  ?>
   <div class="social-links mt-3 text-center">
     <a href="https://github.com/bvsvenema" target="_blank" class="github"><i class="bx bxl-github"></i></a>
     <a href="https://www.instagram.com/benjamin_venema/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
@@ -336,7 +333,7 @@ $stmt->close();*/
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
         <?php
         $sql = "SELECT id, projectname, picturename, catagory FROM projects";
-        $result = $con2->query($sql);
+        $result = $con->query($sql);
         if($result->num_rows > 0){
           while($row = $result->fetch_assoc()){?>            
             <div class="col-lg-4 col-md-6 portfolio-item <?=$row["catagory"]?>">
@@ -589,5 +586,4 @@ $stmt->close();*/
 </html>
 <?
 $con->close();
-$con2->close();
 ?>
