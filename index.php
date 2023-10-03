@@ -76,11 +76,14 @@ include "router/db.inc.php";
 
         <div class="section-title">
           <h2>Over Mij</h2>
-          <p>Mijn naam is Benjamin Venema en ik ben 21 jaar oud. Ik bevind me bijna aan het einde van
-              mijn opleiding. Momenteel ben ik druk bezig met het opzetten van mijn portfolio website en LinkedIn-profiel,
-              vandaar dit korte bericht. Ik heb de opleiding Applicatie- en Mediaontwikkelaar gevolgd, wat een MBO-4 opleiding is.
-              Binnen deze opleiding heb ik voornamelijk gewerkt met Unity, waarbij ik me heb gespecialiseerd in de programmeertaal C#.
-              Daarnaast heb ik veel ervaring opgedaan met het bouwen van websites, waarbij ik gewerkt heb met talen zoals PHP en Javascript (EJS).</p>
+          <p>Als programmeur/developer ben ik gedreven om mijn vaardigheden in te zetten om mensen te helpen,
+             en dat is waarom ik bijzonder geïnteresseerd ben in het ontwikkelen van 'Serious Games'. 
+             Tijdens mijn stage bij Defensie ontdekte ik mijn passie voor dit vakgebied. Het gaf me voldoening om samen te werken met militairen en hen te ondersteunen met programma's
+              zoals 'Steelbeast'. <br> <br>
+
+            Tijdens mijn opleiding heb ik me gespecialiseerd in het creëren van games met behulp van 'Unity'.
+             Dankzij mijn autodidactische leerstijl kan ik snel nieuwe talen en programma's oppakken.
+              Ik kijk ernaar uit om mezelf verder te ontwikkelen en deel uit te maken van een inspirerend team dat deze passie deelt.</p>
         </div>
 
         <div class="row">
