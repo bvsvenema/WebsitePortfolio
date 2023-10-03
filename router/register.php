@@ -47,7 +47,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 	// Store the result so we can check if the account exists in the database.
 	if ($stmt->num_rows > 0) {
 		// Username already exists
-		errorMessage("Sorry, Username exists, please choose another!". false);
+		errorMessage("Sorry, Username exists, please choose another!", false);
 	} else {
 		// Username doesn't exists, insert new account
         if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
@@ -55,7 +55,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 	        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	        $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
 	        $stmt->execute();
-			errorMessage("You have successfully registered! You can now login", true)
+			errorMessage("You have successfully registered! You can now login", true);
         } else {
 	        // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
 			errorMessage("Could not prepare statement!", false);

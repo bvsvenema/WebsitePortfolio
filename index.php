@@ -1,6 +1,7 @@
 <?php
 include "router/db.inc.php";
 
+
 /*$stmt = $con2->prepare('SELECT projectname, filename, picturename, catagory, headlanguage FROM projects WHERE id = ? ORDER BY date DESC');
 $stmt->bind_result($projectname, $filename, $picturename, $catagory, $headlanguage);
 $stmt->fetch();
@@ -46,6 +47,9 @@ $stmt->close();*/
 <div class="profile">
   <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
   <h1 class="text-light"><a href="index.php">Benjamin Venema</a></h1>
+  <?php
+    echo '<H1>'.apache_getenv('TESTING'). "</h1>";
+  ?>
   <div class="social-links mt-3 text-center">
     <a href="https://github.com/bvsvenema" target="_blank" class="github"><i class="bx bxl-github"></i></a>
     <a href="https://www.instagram.com/benjamin_venema/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>

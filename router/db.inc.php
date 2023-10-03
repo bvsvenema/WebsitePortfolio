@@ -1,7 +1,14 @@
 <?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
+require_once "./vendor/autoload.php";
+
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(dirname("."));
+$dotenv->load();
+
+
+$DATABASE_HOST = $_ENV['DATABASE_HOST'];
+$DATABASE_USER = $_ENV['DATABASE_USER'];
+$DATABASE_PASS = $_ENV['DATABASE_PASS'];
 $DATABASE_NAME = 'phplogin';
 $DATABASE_NAME2 = 'myprojects';
 // Try and connect using the info above.

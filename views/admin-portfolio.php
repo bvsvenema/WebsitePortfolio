@@ -153,8 +153,10 @@ include "../router/inactivityLogout.php";
                     <input type="reset" class="btn-warning btn btn-sm" value="Cancel">
                   </li>
                 </form></ul>
-                <form>
+
+                <form action="../router/editproject.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <h3>add extra picture</h3>
+                  <input type="text" name="id" value="<?=$project_data["id"]?>" style="display: none">
                   <ul>
                     <li>
                       <strong>Picture File</strong>: 
@@ -165,7 +167,6 @@ include "../router/inactivityLogout.php";
                     </li>
                   </ul>
                 </form>
-                
                 <?php CloseConnection($con, $con2); ?>        
             </div>
         </div>

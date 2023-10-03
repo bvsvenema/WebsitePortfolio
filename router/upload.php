@@ -74,10 +74,11 @@ if ($uploadOk == 0) {
         exit;
       }
 
-      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `startdate`, `finishdate`, `client`, `url`, `information`) VALUES (?,?,?,?,?,?,?,?,?,?)")){
+      if($stmt = $con2->prepare("INSERT INTO `projects` (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `startdate`, `finishdate`, `client`, `url`, `information`, `table`) VALUES (?,?,?,?,?,?,?,?,?,?,?)")){
         $fileName = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
         $picturename = $uniqId . $target_file2;      
-        $stmt->bind_param('ssssssssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['startdate'], $_POST['finishdate'], $_POST['client'], $_POST['url'], $_POST['information']);
+        $tablename = "_{$_POST['projectname']}-ProjectPictures";
+        $stmt->bind_param('sssssssssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['startdate'], $_POST['finishdate'], $_POST['client'], $_POST['url'], $_POST['information'], $tablename);
         $stmt->execute();
         
       }else{
