@@ -1,5 +1,7 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 include "../router/db.inc.php";
 
 $getOldData = $con2->query("SELECT * FROM projects WHERE id = ".$_POST['id']);
@@ -8,6 +10,7 @@ $oldData = $getOldData->fetch_assoc();
 $target_dir = "../uploads/";
 $uploadOk = 1;
 $sql = "UPDATE projects SET projectname=?, catagory=?, headlanguage=?, client=?, startdate=?, finishdate=? ,url=?, table=?  WHERE id=?";
+$sql = "UPDATE projects SET(`projectname`, `catagory`, `headlanguage`, `client`, `startdate`, `finishdate`, `url`, `table`) VALUES (?,?,?,?,?,?,?,?) WHERE id=?";
 $TableSql = "ALTER TABLE `_{$oldData['projectname']}-ProjectPictures` RENAME TO `_{$_POST['projectname']}-ProjectPictures`";
 $bindparamint = 0;
 
@@ -89,20 +92,20 @@ if(basename($_FILES["projectimage"]["name"] != null)){
 }else{
     echo'there is no picture uploaded, ';
 }
-
-if(basename($_FILES["projectimage"]["name"]) != null && basename($_FILES["fileToUpload"]["name"])){
-    echo'both files are not null, ';
-    $sql = "UPDATE `projects` SET(`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `client`, `startdate`, `finishdate`, `url`, `table`) VALUES (?,?,?,?,?,?,?,?,?,?) WHERE id=?";
+echo"Test";
+if(basename($_FILES["projectimage"]["name"]) != null && basename($_FILES["fileToUpload"]["name"]) != null){
+    //echo'both files are not null, ';
+    $sql = "UPDATE projects SET(`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `client`, `startdate`, `finishdate`, `url`, `table`) VALUES (?,?,?,?,?,?,?,?,?,?) WHERE id=?";
     $bindparamint = 3;
 }
-
+echo "test";
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
   // if everything is ok, try to upload file
   } else {
     $uniqId = uniqid();
-
+    echo "!@#EADWQADWADA,            " . $bindparamint;
     if($stmt->num_rows < 0){
       echo "Sorry, Project id doesn't exist";
     }else{
@@ -115,21 +118,26 @@ if ($uploadOk == 0) {
         if(basename($_FILES["projectimage"]["name"]) != null)
         $picturename = $uniqId . $target_file2;
         $tablename = "_{$_POST['projectname']}-ProjectPictures";
+        $startDate = $_POST['startdate'];
+        $finishDate = $_POST['finishdate'];
+        if($_POST['startdate'] == "")
+          $startDate = null;
+        if($_POST['finishdate'] == "")
+          $finishDate = null;
         switch($bindparamint){
             case 0:
-                $stmt->bind_param('ssssssssi', $_POST['projectname'], $_POST['category'], $_POST['headlanguage'], $_POST['client'], $_POST['startdate'], $_POST['finishdate'], $_POST['url'], $tablename ,$_POST['id']);
-                echo "uploaded information:".$_POST['projectname']." ".$_POST['category']." ".$_POST['headlanguage']." ".$_POST['client']." ".$_POST['startdate']." ".$_POST['finishdate']." ".$_POST['url']." ";
+                $stmt->bind_param('ssssssssi', $_POST['projectname'], $_POST['category'], $_POST['headlanguage'], $_POST['client'], $startDate, $finishDate, $_POST['url'], $tablename ,$_POST['id']);
                 break;
             case 1:
-                $stmt->bind_param('sssssssssi', $_POST['projectname'], $fileName, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $_POST['startdate'], $_POST['finishdate'], $_POST['url'], $tablename , $_POST['id']);
+                $stmt->bind_param('sssssssssi', $_POST['projectname'], $fileName, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $startDate, $finishDate, $_POST['url'], $tablename , $_POST['id']);
                 move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
                 break;
             case 2:
-                $stmt->bind_param('sssssssssi', $_POST['projectname'], $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $_POST['startdate'], $_POST['finishdate'], $_POST['url'], $tablename , $_POST['id']);
+                $stmt->bind_param('sssssssssi', $_POST['projectname'], $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $startDate, $finishDate, $_POST['url'], $tablename , $_POST['id']);
                 move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2);
                 break;
             case 3:
-                $stmt->bind_param('ssssssssssi', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $_POST['startdate'], $_POST['finishdate'], $tablename , $_POST['url'], $_POST['id']);
+                $stmt->bind_param('ssssssssssi', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $_POST['client'], $startDate, $finishDate, $tablename , $_POST['url'], $_POST['id']);
                 move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
                 move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2);
                 break;

@@ -75,6 +75,28 @@ include "../router/inactivityLogout.php";
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
 
+      
+      <div class="w-100">
+        <?php
+                    if(!empty($_SESSION['delete_error_msg']))
+                    {
+                      echo"
+                      <div class='alert alert-danger' role='alert'> 
+                        ".$_SESSION['error_msg'],"
+                      </div>";
+                      unset($_SESSION['error_msg']);
+                    }
+                    if(!empty($_SESSION['succes_msg']))
+                    {
+                      echo"
+                      <div class='alert alert-success' role='alert'> 
+                        ".$_SESSION['succes_msg'],"
+                      </div>";
+                      unset($_SESSION['succes_msg']);
+                    }
+				          ?>
+        </div>
+
         <div class="row gy-4">
 
           <div class="col-lg-8">
@@ -125,12 +147,12 @@ include "../router/inactivityLogout.php";
 
                   <li>
                     <strong>Project start date</strong>: 
-                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"]?>" required>
+                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"]?>">
                   </li>
 
                   <li>
                     <strong>Project finish date</strong>: 
-                    <input type="date" name="finishdate" if="finishdate" value="<?= $project_data["finishdate"]?>" required>
+                    <input type="date" name="finishdate" if="finishdate" value="<?= $project_data["finishdate"]?>">
                   </li>
 
                   <li>
@@ -171,8 +193,10 @@ include "../router/inactivityLogout.php";
             </div>
         </div>
 
+
             <div class="portfolio-description">
               <h2>Project informatie</h2>
+
 
                 <form action="../router/editInformation.php" method="post">
                   <input type="text" name="id" value="<?=$project_data["id"]?>" style="display: none">

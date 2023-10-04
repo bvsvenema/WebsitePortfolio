@@ -1,5 +1,7 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 include "../router/db.inc.php";
   if(isset($_GET['project_id'])){
     $project_id = $_GET['project_id'];
@@ -7,7 +9,7 @@ include "../router/db.inc.php";
 
     $get_project = $con2->query("SELECT * FROM projects WHERE id = $project_id");
     $project_data = $get_project->fetch_assoc();
-    $sqlTable = "DROP TABLE `_{$project_data['projectname']}-projectpictures`";
+    $sqlTable = "DROP TABLE `_{$project_data['projectname']}-ProjectPictures`";
     $dir = "../uploads/".$project_data['projectname']."-Project";
   
   if($con2->query($sql) === true){

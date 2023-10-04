@@ -29,4 +29,15 @@ function CloseConnection($con, $con2) {
 	$con->close();
   	$con2->close();
 }
+
+function errorMessage($Msg, $header , bool $error_or_succes){
+    if($error_or_succes == false){
+      $_SESSION['error_msg'] = "$Msg";
+      header("Location: ../views/".$header);
+      exit;
+    }
+    $_SESSION['succes_msg'] = "$Msg";
+    header("Location: ../views/".$header);
+  }
+
 ?>

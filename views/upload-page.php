@@ -97,10 +97,10 @@ if (!isset($_SESSION['loggedin'])) {
 				<input type="file" name="fileToUpload" id="fileToUpload" required>
 				<br>
 
-				<label for="inforamtion">
+				<label for="information">
 					<i></i>
 				</label>
-				<textarea name="inforamtion" id="inforamtion" cols="80" rows="5"></textarea>
+				<textarea name="information" id="information" cols="80" rows="5"></textarea>
 
 
                 <!-- error message -->

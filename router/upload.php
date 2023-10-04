@@ -78,7 +78,6 @@ if ($uploadOk == 0) {
       }
 
       if($stmt = $con2->prepare("INSERT INTO projects (`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `startdate`, `finishdate`, `client`, `url`, `information`, `table`) VALUES (?,?,?,?,?,?,?,?,?,?,?)")){
-        echo "AAAAAHHHH";
         $fileName = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
         $picturename = $uniqId . $target_file2;      
         $tablename = "_{$_POST['projectname']}-ProjectPictures";
@@ -89,11 +88,7 @@ if ($uploadOk == 0) {
         if($_POST['finishdate'] == "")
           $finishDate = null;
         $stmt->bind_param('sssssssssss', $_POST['projectname'], $fileName, $picturename, $_POST['category'], $_POST['headlanguage'], $startDate, $finishDate, $_POST['client'], $_POST['url'], $_POST['information'], $tablename);
-        echo $_POST['startdate'], $_POST['finishdate'];
-        echo "NO";
         $stmt->execute();
-        echo "Your made it";
-        
       }else{
         errorMessage("Could not prepare statement!", false);
         exit;
@@ -110,6 +105,7 @@ if ($uploadOk == 0) {
     if(mkdir(__DIR__ ."/../uploads/".$_POST['projectname'].'-Project', 0777, true)){
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)){
         if(move_uploaded_file($_FILES["projectimage"]["tmp_name"], $target_dir . $uniqId . $target_file2)){
+          errorMessage('<strong>'.$_POST['projectname']."</strong> has been uploaded with the file: <strong>" .htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]))."'</strong>' and with the picture: <strong>".htmlspecialchars( basename( $_FILES["projectimage"]["name"])).'</strong>',true);
         }else{
           errorMessage("Sorry, there was an error uploading your image file.", false);
         }
