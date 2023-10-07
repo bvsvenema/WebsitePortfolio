@@ -14,31 +14,22 @@ include "../router/db.inc.php";
   
   if($con2->query($sql) === true){
     if(removeFiles($dir)){
-      errorMessage("Something went wrong with deleting files", false);
+      errorMessage("Something went wrong with deleting files", "admin-project.php" ,false);
     }else{
       if($con2->query($sqlTable)){
-      errorMessage("Delete files and project with the name: ".$project_data['projectname'], true);
+      errorMessage("Delete files and project with the name: ".$project_data['projectname'],"admin-project.php" , true);
       }else{
-        errorMessage("Something went wrong with deleting Table", false);
+        errorMessage("Something went wrong with deleting Table","admin-project.php" , false);
       }
     }
   }else{
-    errorMessage('Something went wrong with deleting querry', false);
+    errorMessage('Something went wrong with deleting querry',"admin-project.php" , false);
   }
 
 }else{
-  errorMessage('Couldnt find project', false);
+  errorMessage('Couldnt find project', "admin-project.php" , false);
 }
 
-function errorMessage($Msg, bool $error_or_succes){
-  if($error_or_succes == false){
-    $_SESSION['delete_error_msg'] = "$Msg";
-    header("Location: ../views/admin-project.php");
-    exit;
-  }
-  $_SESSION['delete_succes_msg'] = "$Msg";
-  header("Location: ../views/admin-project.php");
-}
 
 function removeFiles($filepath){
   $files = glob($filepath . "/*");

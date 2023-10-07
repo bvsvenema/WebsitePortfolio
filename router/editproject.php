@@ -7,10 +7,10 @@ include "../router/db.inc.php";
 $getOldData = $con2->query("SELECT * FROM projects WHERE id = ".$_POST['id']);
 $oldData = $getOldData->fetch_assoc();
 
-$target_dir = "../uploads/";
+$target_dir = "../uploads/".$_POST['projectname']."-Project/";
 $uploadOk = 1;
-$sql = "UPDATE projects SET projectname=?, catagory=?, headlanguage=?, client=?, startdate=?, finishdate=? ,url=?, table=?  WHERE id=?";
-$sql = "UPDATE projects SET(`projectname`, `catagory`, `headlanguage`, `client`, `startdate`, `finishdate`, `url`, `table`) VALUES (?,?,?,?,?,?,?,?) WHERE id=?";
+$sql = "UPDATE projects SET projectname=?, catagory=?, headlanguage=?, client=?, startdate=?, finishdate=?,url=?, tablename=?  WHERE id=?";
+//$sql = "INSERT INTO `projects`(`projectname`,`catagory`, `headlanguage`, `client`, `startdate`, `finishdate`, `url`, `table`) VALUES (?,?,?,?,?,?,?,?) WHERE id=?";
 $TableSql = "ALTER TABLE `_{$oldData['projectname']}-ProjectPictures` RENAME TO `_{$_POST['projectname']}-ProjectPictures`";
 $bindparamint = 0;
 
@@ -31,11 +31,11 @@ if($stmt = $con2->prepare('SELECT id FROM projects WHERE id = ?')){
 //check if there has been a file in the input
 if(basename($_FILES["fileToUpload"]["name"]) != null){
     echo 'File is not null, ';
-    unlink("../uploads/".$oldData['filename']);
+    unlink('../uploads/'.$_POST['projectname'].'-Project/'.$oldData['filename']);
     echo 'old file deleted:'.$oldData['filename'].', ';
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    $sql = "UPDATE projects SET projectname=?, filename=? ,catagory=?, headlanguage=?, client=?, startdate=?, finishdate=? , url=?, table=? WHERE id=?";
+    $sql = "UPDATE projects SET projectname=?, filename=? ,catagory=?, headlanguage=?, client=?, startdate=?, finishdate=? , url=?, tablename=? WHERE id=?";
     $bindparamint = 1;
     
     // Check if image file is a actual image or fake image
@@ -50,12 +50,6 @@ if(basename($_FILES["fileToUpload"]["name"]) != null){
         }
     }
     
-    // Check if file already exists
-    if (!file_exists($target_file)) {
-        echo "Sorry, file name doesn't exists.";
-        $uploadOk = 0;
-        exit;
-    }
     
         // Check file size
     if ($_FILES["fileToUpload"]["size"] > 50000000000) {
@@ -76,11 +70,11 @@ if(basename($_FILES["fileToUpload"]["name"]) != null){
 
 if(basename($_FILES["projectimage"]["name"] != null)){
     echo'image is not null ';
-    unlink("../uploads/".$oldData['picturename']);
+    unlink('../uploads/'.$_POST['projectname'].'-Project/'.$oldData['picturename']);
     echo 'old file deleted:'.$oldData['picturename'].', ';
     $target_file2 = basename($_FILES["projectimage"]["name"]);
     $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
-    $sql = "UPDATE projects SET projectname=?, picturename=? ,catagory=?, headlanguage=?, client=?, startdate=?, finishdate=? , url=?, table=? WHERE id=?";
+    $sql = "UPDATE projects SET projectname=?, picturename=? ,catagory=?, headlanguage=?, client=?, startdate=?, finishdate=?, url=?, tablename=? WHERE id=?";
     $bindparamint = 2;
    
 
@@ -95,7 +89,7 @@ if(basename($_FILES["projectimage"]["name"] != null)){
 echo"Test";
 if(basename($_FILES["projectimage"]["name"]) != null && basename($_FILES["fileToUpload"]["name"]) != null){
     //echo'both files are not null, ';
-    $sql = "UPDATE projects SET(`projectname`, `filename`, `picturename`, `catagory`, `headlanguage`, `client`, `startdate`, `finishdate`, `url`, `table`) VALUES (?,?,?,?,?,?,?,?,?,?) WHERE id=?";
+    $sql = "UPDATE projects SET projectname=?, filename=?, picturename=? ,catagory=?, headlanguage=?, client=?, startdate=?, finishdate=?, url=?, tablename=? WHERE id=?";
     $bindparamint = 3;
 }
 echo "test";

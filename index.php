@@ -93,13 +93,13 @@ include "router/db.inc.php";
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>Applicatie & MediaOntwikkelaar</h3>
             <p class="fst-italic">
-              Ik heb mezelf gespecialiseerd in het programmeren van games in unity met C#
+              Gespecialiseerd in het programmeren van games in unity met C#
             </p>
             <div class="row">
               <div class="col-lg-6">
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Geboorte datum:</strong> <span>7 Mei 2002</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a href="portfolio.bvsvenema.nl">portfolio.bvsvenema.nl</a></span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Telefoon:</strong> <span>06 49733347</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Stad:</strong> <span>Heerenveen, Nederland</span></li>
                 </ul>
@@ -109,7 +109,7 @@ include "router/db.inc.php";
                   <li><i class="bi bi-chevron-right"></i> <strong>Leeftijd:</strong> <span>21</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Opleiding Niveau:</strong> <span>Mbo 4</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>Bvsvenema@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Werk:</strong> <span>Zoekende</span></li>
                 </ul>
               </div>
             </div>
@@ -122,54 +122,6 @@ include "router/db.inc.php";
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Facts Section ======= -->
-    <!---<section id="facts" class="facts">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Facts</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> consequuntur quae</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>---><!-- End Facts Section -->
-
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
       <div class="container">
@@ -179,7 +131,7 @@ include "router/db.inc.php";
           <p>Op mijn opleiding was er veel nadruk op zelfstudie, waardoor ik niet veel lessen in programmeren heb gehad.
               Hierdoor heb ik mijn vaardigheden grotendeels zelf aangeleerd. Deze zelfstandige aanpak heeft me echter
               goed geholpen bij het ontwikkelen van probleemoplossend vermogen en onderzoeksvaardigheden.
-              Mijn specialisatie ligt voornamelijk op het gebied van game development, waar ik veel ervaring en kennis heb opgebouwd.
+              Mijn specialisatie ligt voornamelijk op het gebied van game development, waar ik veel ervaring en kennis mee heb opgebouwd.
               Desondanks ben ik ook in staat om succesvol websites te bouwen.</p>
         </div>
 
@@ -281,13 +233,12 @@ include "router/db.inc.php";
             <h3 class="resume-title">Werkvaardigheid</h3>
             <div class="resume-item">
               <h4>Stagiar Serous Game Centrum</h4>
-              <h5>2019 - Present</h5>
+              <h5>2019 - 2023</h5>
               <p><em>Amersfoort, Ministerie van Defensie</em></p>
               <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+                <li>Projecten gemaakt in teams</li>
+                <li>Militairen geholpen met ondersteuningen in Steelbeast</li>
+                <li>Simulaties gemaakt</li>
               </ul>
             </div>
             <div class="resume-item">
@@ -295,10 +246,9 @@ include "router/db.inc.php";
               <h5>2018 - Heden</h5>
               <p><em>Welkoop Heerenveen</em></p>
               <ul>
+                <li>Begonnen als vakken vuller</li>
+                <li>Hoofd magazijn</li>
                 <li>Veel met klanten gewerkt</li>
-                <li>Vulploeg aangestuurd</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
               </ul>
             </div>
           </div>
@@ -313,7 +263,7 @@ include "router/db.inc.php";
 
         <div class="section-title">
           <h2>Portfolio</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Hier vind je al mijn projecten die ik tijdens mijn periode als programmeur heb gemaakt, zowel voltooide als halfvoltooide projecten. We werken er nog aan om alle projecten hier te plaatsen.</p>
         </div>
 
         <div class="row" data-aos="fade-up">
@@ -329,7 +279,7 @@ include "router/db.inc.php";
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
         <?php
-        $sql = "SELECT id, projectname, picturename, catagory FROM projects";
+        $sql = "SELECT id, projectname, picturename, catagory FROM projects ORDER BY startdate DESC" ;
         $result = $con2->query($sql);
         if($result->num_rows > 0){
           while($row = $result->fetch_assoc()){?>            
@@ -517,7 +467,7 @@ include "router/db.inc.php";
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <!--<form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Naam</label>
@@ -545,7 +495,7 @@ include "router/db.inc.php";
             </form>
           </div>
 
-        </div>
+        </div>-->
 
       </div>
     </section><!-- End Contact Section -->

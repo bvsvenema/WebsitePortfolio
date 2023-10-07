@@ -75,7 +75,7 @@ if (!isset($_SESSION['loggedin'])) {
 				<label for="startdate">
 					<i class="fas fa-calendar-alt"></i>
 				</label>
-				<input type="date" name="startdate" id="startdate">
+				<input type="date" name="startdate" id="startdate" require>
 				<br>
 
 				<label for="finishdate">

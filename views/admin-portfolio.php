@@ -9,6 +9,7 @@ include "../router/inactivityLogout.php";
   }else{
     header("location: ../index.php");
   }
+  $array = array("PHP","EJS", "JavaScript", "C#", "Java");
 ?>
 
 <!DOCTYPE html>
@@ -139,6 +140,16 @@ include "../router/inactivityLogout.php";
                       <option <?php if($project_data["catagory"] == "Program"){ echo'selected';}?> value="Program">Program</option>
                     </select>
                   </li>
+                  <li class="w-100"><strong>headlanguage</strong>:
+                    <select selected="Game" name="headlanguage" id="headlanguage" required>
+                      <?php 
+                      foreach($array as &$value){
+                        echo $value;
+                       ?>
+                      <option <?php if($project_data["headlanguage"] == $value){ echo'selected';} ?> value=<?=$value?>><?=$value?></option>
+                      <?php } ?>
+                    </select>
+                  </li>
 
                   <li class="w-100">
                     <strong>Client</strong>: 
@@ -147,7 +158,7 @@ include "../router/inactivityLogout.php";
 
                   <li>
                     <strong>Project start date</strong>: 
-                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"]?>">
+                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"] ?>  " required>
                   </li>
 
                   <li>
