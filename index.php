@@ -199,7 +199,7 @@ include "router/db.inc.php";
 
         <div class="section-title">
           <h2>Curriculum Vitae</h2>
-          <p><a href="./assets/CV-BenjaminVenema(8-6-2023).pdf" download><i class="bi bi-download"></i> Download Curriculum Vitae</a></p>
+          <p><a href="./assets/CV-BenjaminVenema.pdf" download><i class="bi bi-download"></i> Download Curriculum Vitae</a></p>
         </div>
 
         <div class="row">
@@ -263,7 +263,7 @@ include "router/db.inc.php";
 
         <div class="section-title">
           <h2>Portfolio</h2>
-          <p>Hier vind je al mijn projecten die ik tijdens mijn periode als programmeur heb gemaakt, zowel voltooide als halfvoltooide projecten. We werken er nog aan om alle projecten hier te plaatsen.</p>
+          <p>Hier vind je al mijn projecten die ik tijdens mijn periode als programmeur heb gemaakt, zowel voltooide als halfvoltooide projecten.</p>
         </div>
 
         <div class="row" data-aos="fade-up">

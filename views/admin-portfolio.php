@@ -158,7 +158,7 @@ include "../router/inactivityLogout.php";
 
                   <li>
                     <strong>Project start date</strong>: 
-                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"] ?>  " required>
+                    <input type="date" name="startdate" if="startdate" value="<?= $project_data["startdate"] ?>" required>
                   </li>
 
                   <li>

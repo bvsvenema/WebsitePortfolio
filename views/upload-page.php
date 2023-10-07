@@ -30,7 +30,7 @@ if (!isset($_SESSION['loggedin'])) {
 			<h2>Upload Project</h2>
 			<div class="text-center">
 				<p>Register acount below:</p>
-			<form action="../router/upload.php" method="post" enctype="multipart/form-data" autocomplete="off">
+			<form class="upload-form" action="../router/upload.php" method="post" enctype="multipart/form-data" autocomplete="off">
 			<br>
 				<label for="projectname">
 					<i class="fas fa-project-diagram"></i>
@@ -103,23 +103,24 @@ if (!isset($_SESSION['loggedin'])) {
 				<textarea name="information" id="information" cols="80" rows="5"></textarea>
 
 
+
                 <!-- error message -->
 				<?php
 					if(!empty($_SESSION['upload_error_msg']))
 					{
 						echo"
 						<div class='alert alert-danger' role='alert'> 
-							".$_SESSION['upload_error_msg'],"
+							".$_SESSION['error_msg'],"
 						</div>";
-						unset($_SESSION['upload_error_msg']);
+						unset($_SESSION['error_msg']);
 					}
-					if(!empty($_SESSION['upload_succes_msg']))
+					if(!empty($_SESSION['succes_msg']))
 					{
 						echo"
 						<div class='alert alert-success' role='alert'> 
-							".$_SESSION['upload_succes_msg'],"
+							".$_SESSION['succes_msg'],"
 						</div>";
-						unset($_SESSION['upload_succes_msg']);
+						unset($_SESSION['succes_msg']);
 					}
 				?>
 				<br>
@@ -131,3 +132,4 @@ if (!isset($_SESSION['loggedin'])) {
 		</div>
 	</body>
 </html>
+
